@@ -21,7 +21,16 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
-
+      - name: Check HF token
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          if [ -n "$HF_TOKEN" ]; then
+            echo "HF_TOKEN is available"
+          else
+            echo "HF_TOKEN is NOT available"
+            exit 1
+          fi
       - name: Collect news
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
