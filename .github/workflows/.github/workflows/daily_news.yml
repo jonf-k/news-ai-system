@@ -2,6 +2,9 @@ name: News Collection Test
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   collect-news:
